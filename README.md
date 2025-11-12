@@ -3,7 +3,12 @@
 ## Dataset
 
 El dataset utilizado proviene de Kaggle - [Netflix Streaming Data](https://www.kaggle.com/datasets/ahmadrazakashif/netflix-streaming-data).
-Contiene información relacionada con el catálogo y rendimiento de títulos disponibles en la plataforma de Netflix.
+Para ejecutar los ejemplos correctamente, descarga el archivo desde Kaggle y colócalo dentro de una carpeta llamada data/ en la raíz del proyecto.
+
+```
+data/
+├─ netflix_titles.csv
+```
 
 ## Atributos comunes de un DataFrame
 
