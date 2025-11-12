@@ -3,7 +3,7 @@
 ## Dataset
 
 El dataset utilizado proviene de Kaggle - [Netflix Streaming Data](https://www.kaggle.com/datasets/ahmadrazakashif/netflix-streaming-data).
-Para ejecutar los ejemplos correctamente, descarga el archivo desde Kaggle y colócalo dentro de una carpeta llamada data/ en la raíz del proyecto.
+Para ejecutar los ejemplos correctamente, descarga el archivo desde Kaggle y colócalo dentro de una carpeta llamada `data/` en la raíz del proyecto.
 
 ```
 data/
