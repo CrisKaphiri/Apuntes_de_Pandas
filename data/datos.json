@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "fruta": "Manzana",
+    "color": "Rojo",
+    "precio": 300,
+    "stock": 50
+  },
+  {
+    "id": 2,
+    "fruta": "Platano",
+    "color": "Amarillo",
+    "precio": 400,
+    "stock": 100
+  },
+  {
+    "id": 3,
+    "fruta": "Naranja",
+    "color": "Naranjo",
+    "precio": 200,
+    "stock": 160
+  }
+]
