@@ -1,5 +1,21 @@
 # Apuntes de Pandas
 
+Este repositorio contiene apuntes personales organizados sobre Pandas, enfocado en el **análisis y manipulación de datos**.
+
+A Continuación, se describe el contenido de este repositorio:
+
+| Sección | Tema                           | Archivo asociado              |
+| ------- | ------------------------------ | ----------------------------- |
+| 1       | Crear, Leer y guardar archivos | `01_crear_leer_guardar.ipynb` |
+
+
+## 01 Leer y guardar archivos
+
+## 02 Crear DataFrame o Serie
+
+
+
+
 ## Dataset
 
 El dataset utilizado proviene de Kaggle - [Netflix Streaming Data](https://www.kaggle.com/datasets/ahmadrazakashif/netflix-streaming-data).
