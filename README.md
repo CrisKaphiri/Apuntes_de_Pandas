@@ -4,24 +4,30 @@ Este repositorio contiene apuntes personales organizados sobre Pandas, enfocado 
 
 A Continuación, se describe el contenido de este repositorio:
 
-| Sección | Tema                           | Archivo asociado              |
-| ------- | ------------------------------ | ----------------------------- |
-| 1       | Crear, Leer y guardar archivos | `01_crear_leer_guardar.ipynb` |
+| Sección  | Tema                           | Archivo asociado              |
+| -------- | ------------------------------ | ----------------------------- |
+| 01       | Crear, Leer y guardar archivos | `01_crear_leer_guardar.ipynb` |
 
 
-## 01 Crear, Leer y guardar archivos
+## 01 - Crear, Leer y guardar archivos
 
-En esta sección se muestra cómo:
-- Crear DataFrames y Series
-- Agregar Series a un DataFrame
-- Convertir columnas a Series
-- Leer archivos csv, json y sql
-- Guardar archivos
+| Métodos                          | Descripción                                          |
+| -------------------------------- | ---------------------------------------------------- |
+| `pd.DataFrame()`                 | Crea un DataFrame                                    |
+| `pd.Series()`                    | Crea una Serie                                       |
+| `df['Nombre_columna'] = 'serie'` | Agrega Serie a DataFrame como columna                |
+| `serie = df['columna']`          | Convierte una columna de un DataFrame a una Serie    |
+| `pd.read_csv("")`                | Lee un archivo csv                                   |
+| `pd.read_sql("")`                | Lee un archivo sql previa conexion con base de datos |
+| `df.to_csv("")`                  | Guarda df en un archivo csv                          |
+| `df.to_sql("")`                  | Inserta df en una tabla o crea una base de datos     |
 
-Puedes revisar el notebook con los detalles a continuación:
+Puedes encontrar ejemplos más detallados en el siguiente notebook:
 [01_crear_leer_guardar.ipynb](notebooks/01_crear_leer_guardar.ipynb)
 
-
+> [!NOTE]
+> Si guardo un DataFrame en una base SQLite existente, se creará o reemplazará una tabla.
+> Si el archivo .db no existe, se creará automáticamente.
 
 ## Dataset
 
