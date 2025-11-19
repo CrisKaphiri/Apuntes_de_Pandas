@@ -9,10 +9,17 @@ A Continuación, se describe el contenido de este repositorio:
 | 1       | Crear, Leer y guardar archivos | `01_crear_leer_guardar.ipynb` |
 
 
-## 01 Leer y guardar archivos
+## 01 Crear, Leer y guardar archivos
 
-## 02 Crear DataFrame o Serie
+En esta sección se muestra cómo:
+- Crear DataFrames y Series
+- Agregar Series a un DataFrame
+- Convertir columnas a Series
+- Leer archivos csv, json y sql
+- Guardar archivos
 
+Puedes revisar el notebook con los detalles a continuación:
+[01_crear_leer_guardar.ipynb](notebooks/01_crear_leer_guardar.ipynb)
 
 
 
