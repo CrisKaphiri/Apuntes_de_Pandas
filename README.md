@@ -1,33 +1,6 @@
 # Apuntes de Pandas
 
-Este repositorio contiene apuntes personales organizados sobre Pandas, enfocado en el **análisis y manipulación de datos**.
-
-A Continuación, se describe el contenido de este repositorio:
-
-| Sección  | Tema                           | Archivo asociado              |
-| -------- | ------------------------------ | ----------------------------- |
-| 01       | Crear, Leer y guardar archivos | `01_crear_leer_guardar.ipynb` |
-
-
-## 01 - Crear, Leer y guardar archivos
-
-| Métodos                          | Descripción                                          |
-| -------------------------------- | ---------------------------------------------------- |
-| `pd.DataFrame()`                 | Crea un DataFrame                                    |
-| `pd.Series()`                    | Crea una Serie                                       |
-| `df['Nombre_columna'] = 'serie'` | Agrega Serie a DataFrame como columna                |
-| `serie = df['columna']`          | Convierte una columna de un DataFrame a una Serie    |
-| `pd.read_csv("")`                | Lee un archivo csv                                   |
-| `pd.read_sql("")`                | Lee un archivo sql previa conexion con base de datos |
-| `df.to_csv("")`                  | Guarda df en un archivo csv                          |
-| `df.to_sql("")`                  | Inserta df en una tabla o crea una base de datos     |
-
-Puedes encontrar ejemplos más detallados en el siguiente notebook:
-[01_crear_leer_guardar.ipynb](notebooks/01_crear_leer_guardar.ipynb)
-
-> [!NOTE]
-> Si guardo un DataFrame en una base SQLite existente, se creará o reemplazará una tabla.
-> Si el archivo .db no existe, se creará automáticamente.
+Este repositorio contiene apuntes personales sobre Pandas, organizados en 6 secciones principales que cubren desde la lectura de datos hasta la combinación de DataFrames. Cada sección incluye ejemplos, tablas de métodos, y ejercicios prácticos.
 
 ## Dataset
 
@@ -38,6 +11,119 @@ Para ejecutar los ejemplos correctamente, descarga el archivo desde Kaggle y col
 data/
 ├─ netflix_titles.csv
 ```
+
+## Sección 
+
+| Sección  | Tema                               | Archivo asociado             |
+| -------- | -------------------------------- | ------------------------------ |
+| 01       | Crear, Leer y guardar archivos   | `01_crear_leer_guardar.ipynb`  |
+| 02       | Información, filtros y selección | `02_informacion_filtrar.ipynb` |
+| 03       | Funciones y maps                 | 
+| 04       | Agrupación y clasificación       |
+| 05       | Tipos de datos y valores nulos   |
+| 06       | Renombrar y combinar             | 
+
+Cada notebook corresponde a un bloque conceptual del ecosistema Pandas, e integra los métodos y conceptos más usados en el análisis de datos.
+
+## 01 - Crear, Leer y Guardar archivos
+
+Resumen de algunos métodos para crear, leer y guardar archivos en Pandas.
+
+| Comandos                       | Descripción                                          |
+| ------------------------------ | ---------------------------------------------------- |
+| `pd.DataFrame()`               | Crea un DataFrame                                    |
+| `pd.Series()`                  | Crea una Serie                                       |
+| `df['Nombre_columna'] = serie` | Agrega una Serie al DataFrame como una nueva columna |
+| `serie = df['columna']`        | Convierte una columna de un DataFrame a una Serie    |
+| `pd.read_csv("")`              | Lee un archivo csv                                   |
+| `pd.read_sql("")`              | Lee un archivo sql previa conexion con base de datos |
+| `df.to_csv("")`                | Guarda df en un archivo csv                          |
+| `df.to_sql("")`                | Inserta df en una tabla o crea una base SQLite (.db) |
+
+Puedes encontrar ejemplos en el siguiente notebook:
+[01_crear_leer_guardar.ipynb](notebooks/01_crear_leer_guardar.ipynb)
+
+> [!NOTE]
+> Si guardo un DataFrame en una base SQLite existente, se creará o reemplazará una tabla.
+> Si el archivo .db no existe, se creará automáticamente.
+
+## 02 - Información, filtros y selección
+
+Resumen para acceder a información de dataframes, indexar, seleccionar y asignar datos en Pandas.
+
+### Información general sobre el Dataframe
+
+| Comando                        | Descripción                                      |
+| ------------------------------ | ------------------------------------------------ |
+| `df.info()`                    | Datos generales: columnas, tipos, totales, nulos |
+| `df.shape`                     | Cantidad de filas y columnas                     |
+| `df.columns`                   | Lista de columnas de un dataframe                |
+| `df.head()`                    | Primeras filas del DataFrame                     |
+| `df.tail()`                    | Últimas filas del DataFrame                      |
+| `df.size`                      | Cantidad total de elementos, considerando nulos  |
+| `df.count()`                   | Cantidad de datos **no nulos** por columna       |
+| `df['columna'].unique()`       | Valores únicos de una columna                    |
+| `df['columna'].value_counts()` | Frecuencias de cada valor en una columna         |
+
+### Seleccion de columnas y filas
+
+| Comando                   | Descripción                            |
+| ------------------------- | -------------------------------------- |
+| `df['columna']`           | Selecciona una columna (retorna Serie) |
+| `df[['col1','col2']]`     | Selecciona múltiples columnas          |
+| `df.loc[fila, columna]`   | Selección por **etiquetas**            |
+| `df.iloc[fila, columna]`  | Selección por **posición numérica**    |
+| `df.set_index('columna')` | Usa una columna como índice            |
+| `df['columna'].idxmax()`  | Índice del valor máximo                |
+| `df['columna'].idxmin()`  | Índice del valor mínimo                |
+| `.notnull()`              | Accede a valores no nulos              |
+| `.isnull()`               | Accede a valores nulos                 |
+
+### Filtros y condiciones
+
+| Comando                           | Descripción                               |
+| --------------------------------- | ----------------------------------------- |
+| `df[df['col'] > valor]`           | Filtra filas según condición              |
+| `df[df['columna'].isin([1,2,3])]` | Filtra filas según valores permitidos     |
+| `df['col'].str.contains('texto')` | Filtra filas cuyo texto contiene un valor |
+| `df.query("columna > 10")`        | Filtro usando sintaxis tipo SQL           |
+
+### Asignación de datos
+
+| Comando                       | Descripción                    |
+| ----------------------------- | ------------------------------ |
+| `df['nueva_columna'] = datos` | Crea/reescribe una columna     |
+| `df.loc[cond, 'col'] = valor` | Asigna valores según condición |
+
+Si trabajamos con **dataframes**, podemos seleccionar tanto filas como columnas. Si solamente indicamos la fila, asumira que queremos toda la información de la columna.
+```
+df.iloc[filas, columnas]
+```
+Si trabajos con **series**, solo podemos seleccionar las filas.
+```
+df['columna'].iloc[filas]
+```
+
+### Diferencia clave entre `iloc` y `loc`
+
+`iloc` usa **posició númerica** para indexar (como listas en python):
+- El inicio del rango **se incluye**
+- El final del rango **se excluye**
+
+`loc` usa **etiquetas** para indexar (los nombres del índice):
+- El inicio **se incluye**
+- El final **también se incluye**
+
+Ejemplo:
+- `df.iloc[0:1000]` devuelve **1000 filas**
+- `df.loc[0:1000]` devuelve **1001 filas**
+
+Puedes encontrar ejemplos en el siguiente notebook:
+[02_informacion_filtrar.ipynb](notebooks/02_informacion_filtrar.ipynb)
+
+----------------------------------------------------------------------------------------------
+
+
 
 ## Atributos comunes de un DataFrame
 
