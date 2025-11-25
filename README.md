@@ -12,13 +12,13 @@ data/
 ├─ netflix_titles.csv
 ```
 
-## Sección 
+## Secciones 
 
 | Sección  | Tema                               | Archivo asociado             |
 | -------- | -------------------------------- | ------------------------------ |
-| 01       | Crear, Leer y guardar archivos   | `01_crear_leer_guardar.ipynb`  |
+| 01       | Crear, leer y guardar archivos   | `01_crear_leer_guardar.ipynb`  |
 | 02       | Información, filtros y selección | `02_informacion_filtrar.ipynb` |
-| 03       | Funciones y maps                 | 
+| 03       | Funciones estadísticas y maps    | `03_std_map.ipynb`             |
 | 04       | Agrupación y clasificación       |
 | 05       | Tipos de datos y valores nulos   |
 | 06       | Renombrar y combinar             | 
@@ -63,9 +63,10 @@ Resumen para acceder a información de dataframes, indexar, seleccionar y asigna
 | `df.size`                      | Cantidad total de elementos, considerando nulos  |
 | `df.count()`                   | Cantidad de datos **no nulos** por columna       |
 | `df['columna'].unique()`       | Valores únicos de una columna                    |
+| `df.nunique()`                 | Cantidad de valores únicos                       |
 | `df['columna'].value_counts()` | Frecuencias de cada valor en una columna         |
 
-### Seleccion de columnas y filas
+### Selección de columnas y filas
 
 | Comando                   | Descripción                            |
 | ------------------------- | -------------------------------------- |
@@ -106,20 +107,73 @@ df['columna'].iloc[filas]
 
 ### Diferencia clave entre `iloc` y `loc`
 
-`iloc` usa **posició númerica** para indexar (como listas en python):
-- El inicio del rango **se incluye**
-- El final del rango **se excluye**
+`iloc` usa **posición númerica** para indexar (como listas en python):
+- El inicio del rango **se incluye**.
+- El final del rango **se excluye**.
 
 `loc` usa **etiquetas** para indexar (los nombres del índice):
-- El inicio **se incluye**
-- El final **también se incluye**
+- El inicio **se incluye**.
+- El final **también se incluye**.
 
 Ejemplo:
-- `df.iloc[0:1000]` devuelve **1000 filas**
-- `df.loc[0:1000]` devuelve **1001 filas**
+- `df.iloc[0:1000]` devuelve **1000 filas**.
+- `df.loc[0:1000]` devuelve **1001 filas**.
 
 Puedes encontrar ejemplos en el siguiente notebook:
 [02_informacion_filtrar.ipynb](notebooks/02_informacion_filtrar.ipynb)
+
+## 03 - Funciones y maps 
+
+Funciones para obtener información estadística, realizar operaciones aritméticas entre columnas y aplicar transformaciones personalizadas con funciones, `apply` y `map`.
+
+### Información estadístisca
+
+| Comando                        | Descripción                             |
+| ------------------------------ | --------------------------------------- |
+| `df.describe()`                | Estadísticas generales por columna      |
+| `.mean()`                      | **Promedio**                            |
+| `.median()`                    | **mediana**, el valor central del grupo |
+| `.mode()`                      | **Moda**, puede retornar varias         |
+| `df.count()`                   | Conteo de datos no nulos de un df       |
+| `.min()` / `.max()`            | Mínimo y máximo                         |
+| `.sum()`                       | Suma                                    |
+| `.std()`                       | Desviación estándar                     |
+| `.var()`                       | Varianza                                |
+| `.quantile(0.25)`              | Percentil específico                    |
+| `df['columna'].unique()`       | Valores únicos de una columna           |
+| `df.nunique()`                 | Cantidad de valores únicos por columna  |
+| `df['columna'].value_counts()` | Frecuencias de cada valor en la columna |
+
+### Operaciones con columnas
+
+| Comando                       | Descripción                       |
+| ----------------------------- | --------------------------------- |
+| `df['a'] + df['b']`           | Suma de columnas                  |
+| `df['a'] - df['b']`           | Resta                             |
+| `df['a'] * df['b']`           | Multiplicación                    |
+| `df['a'] / df['b']`           | División                          |
+| `df['nueva'] = df['a'] * 10`  | Crear columna derivada            |
+| `df['col'] = df['col'].abs()` | Transformación simple             |
+| `df.eval()`                   | Operaciones con sintaxis tipo SQL |
+
+### Maps y Apply
+
+| Comando                  | Descripción                                          |
+| ------------------------ | ---------------------------------------------------- |
+| `df['col'].apply(func)`  | Aplica una función a cada valor de una columna       |
+| `df.apply(func, axis=1)` | Aplica función por fila o columna                    |
+| `df['col'].map(serie)`   | Reemplaza valores según un mapeo                     |
+| `df.applymap(func)`      | Aplica función a **todos** los valores del dataframe |
+| `lambda x: ...`          | Funciones rápidas en una línea                       |
+
+- `map()` es ideal para reemplazar valores (ej: 0 -> "No", 1 -> "Si")
+- `apply()` es para lógica más completa
+
+```
+df['total'] = df.apply(lambda row: row['precio'] * row['cantidad'], axis=1)
+```
+Puedes encontrar ejemplos en el siguiente notebook:
+[03_std_map.ipynb](notebooks/03_std_map.ipynb)
 
 ----------------------------------------------------------------------------------------------
 
