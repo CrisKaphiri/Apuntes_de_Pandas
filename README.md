@@ -51,19 +51,25 @@ Puedes encontrar ejemplos en el siguiente notebook:
 
 Resumen para acceder a información de dataframes, indexar, seleccionar y asignar datos en Pandas.
 
+
+
+
+
 ### Información general sobre el Dataframe
 
 | Comando                        | Descripción                                      |
 | ------------------------------ | ------------------------------------------------ |
 | `df.info()`                    | Datos generales: columnas, tipos, totales, nulos |
+| `df.dtypes`                    | Devuelve los tipos de datos del df               |
 | `df.shape`                     | Cantidad de filas y columnas                     |
 | `df.columns`                   | Lista de columnas de un dataframe                |
 | `df.head()`                    | Primeras filas del DataFrame                     |
 | `df.tail()`                    | Últimas filas del DataFrame                      |
-| `df.size`                      | Cantidad total de elementos, considerando nulos  |
+| `df.size`                      | Cantidad total de elementos, incluyendo nulos    |
 | `df.count()`                   | Cantidad de datos **no nulos** por columna       |
-| `df['columna'].unique()`       | Valores únicos de una columna                    |
-| `df.nunique()`                 | Cantidad de valores únicos                       |
+| `df.values`                    | Devuelve un array del df                         |
+| `df['columna'].unique()`       | Devuelve Array de valores únicos de una columna  |
+| `df.nunique()`                 | Cantidad de valores únicos por columna           |
 | `df['columna'].value_counts()` | Frecuencias de cada valor en una columna         |
 
 ### Selección de columnas y filas
@@ -131,10 +137,10 @@ Funciones para obtener información estadística, realizar operaciones aritméti
 | Comando                        | Descripción                             |
 | ------------------------------ | --------------------------------------- |
 | `df.describe()`                | Estadísticas generales por columna      |
+| `df.count()`                   | Conteo de datos no nulos de un df       |
 | `.mean()`                      | **Promedio**                            |
 | `.median()`                    | **mediana**, el valor central del grupo |
 | `.mode()`                      | **Moda**, puede retornar varias         |
-| `df.count()`                   | Conteo de datos no nulos de un df       |
 | `.min()` / `.max()`            | Mínimo y máximo                         |
 | `.sum()`                       | Suma                                    |
 | `.std()`                       | Desviación estándar                     |
@@ -167,59 +173,45 @@ Funciones para obtener información estadística, realizar operaciones aritméti
 | `lambda x: ...`          | Funciones rápidas en una línea                       |
 
 - `map()` es ideal para reemplazar valores (ej: 0 -> "No", 1 -> "Si")
-- `apply()` es para lógica más completa
+```
+df['columna'] = df['columna'].map({0: 'No', 1: 'Sí'})
+```
 
+- `apply()` es para lógica más completa
 ```
 df['total'] = df.apply(lambda row: row['precio'] * row['cantidad'], axis=1)
 ```
+
 Puedes encontrar ejemplos en el siguiente notebook:
 [03_std_map.ipynb](notebooks/03_std_map.ipynb)
 
-----------------------------------------------------------------------------------------------
+## 04 - Agrupación y Clasificación
 
+Métodos para ordenar información, agrupar datos por una o varias columnas y aplicar funciones de agregación.
 
+### Ordenar
 
-## Atributos comunes de un DataFrame
+| Comando                                  | Descripción                                     |
+| ---------------------------------------- | ----------------------------------------------- |
+| `df.sort_values('col')`                  | Ordena por una columna (ascendente por defecto) |
+| `df.sort_values(['a','b'])`              | Ordena por múltiples columnas                   |
+| `df.sort_values('col', ascending=False)` | Orden descendente                               |
+| `df.sort_index()`                        | Ordena por índice                               |
 
-| Atributo   | Descripción                                                   |
-| ---------- | ------------------------------------------------------------- |
-| `.columns` | Devuelve las columnas de un df                                |
-| `.dtypes`  | Devuelve los tipos de datos del df                            |
-| `.iloc`    | Accede a un grupo de filas y columnas utilizando su índice    |
-| `.loc`     | Accede a un grupo de filas y columnas por su etiqueta         |
-| `.shape`   | Devuelve una tupla con la cantidad de filas y columnas del df |
-| `.values`  | Devuelve un array del df                                      |
-| `.size`    | Devuelve la totalidad de elementos en una serie o dataframe   |
+### Agrupación con groupby
 
-## Métodos comunes de un DataFrame
+| Comando                                 | Descripción                   |
+| --------------------------------------- | ----------------------------- |
+| `df.groupby('col')`                     | Agrupa por una columna        |
+| `df.groupby(['col1', 'col2'])`          | Agrupa por múltiples columnas |
+| `df.groupby('col').size()`              | Cuenta filas por grupo        |
+| `df.groupby('col').count()`             | Conteo por columna            |
+| `df.groupby('col').mean()`              | Promedio por grupo            |
+| `df.groupby('col').sum()`               | Suma por grupo                |
+| `df.groupby('col').nunique()`           | Valores únicos por grupo      |
+| `df.groupby('col').agg(['mean','max'])` | Varios cálculos por columna   |
 
-| Métodos           | Descripción                                                              |
-| ----------------- | ------------------------------------------------------------------------ |
-| `.apply()`        | Aplica una función sobre un eje de un df                                 |
-| `.copy()`         | Hace una copia de los índices y datos del df                             |
-| `.describe()`     | Devuelve estadísticas descriptivas de un df                              |
-| `.drop()`         | Elimina las etiquetas especificadas de filas y columnas de un df         |
-| `.head()`         | Devuelve las primeras filas de un df                                     |
-| `.info()`         | Devuelve un resumen del df (Podemos ver si existen valores nulos)        |
-| `.isnull()`       | Devuelve un df booleano del mismo tamaño indicando si cada valor es nulo |
-| `.sort_values()`  | Ordena los valores de un eje determinado                                 |
-| `.value_counts()` | Devuelve una serie que contiene los recuentos de filas únicas de un df   |
-| `.groupby()`      | Agrupa un conjunto de datos, aplica una función y combina resultados     |
-| `.agg()`          | Permite aplicar varios cálculos o funciones a grupos de datos            |
-| `.merge()`        | Combina dos DataFrames según columnas o índices comunes (tipo SQL JOIN)  |
-| `.concat()`       | Combina DataFrames por filas o columnas (apila uno sobre otro)           |
-
-Estos son solo alguno de los atributos y metodos más utilizados. Para una lista más detallada, consulte la [documentación de DataFrame en Pandas](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html), que incluye ejemplos útiles de cómo utilizar cada herramienta. 
-
-## Máscaras Booleanas
-
-| Operador | Significado | Ejemplo                                                 |
-| -------- | ----------- | ------------------------------------------------------- |
-| `&`      | AND         | `(planetas["Lunas"] > 20) & ~(planetas["Lunas"] == 80)` |
-| `\|`     | OR          | `(planetas["Lunas"] < 10) \| (planetas["Lunas"] > 50)`  |
-| `~`      | NOT         | `~(planetas["Lunas"] == 80)`                            |
-
-## Groupby()
+### Groupby()
 
 La función `groupby()` es un método que pertenece a la clase de los DataFrame. Funciona dividiendo los datos en grupos en función de criterios especificados, aplicando una función a cada grupo de forma independiente y combinando los resultados en una estructura de datos.
 
@@ -247,8 +239,7 @@ Es necesario especificar el parámetro `numeric_only` cuando se apliquen funcion
 # Agrupar planetas por tipo y campo magnético. Calcular valores prmedios de las columnas numéricas.
 planetas.groupby(['Tipo', 'Campo_magnetico']).mean(numeric_only= True)
 ```
-
-## Agg()
+### Agg()
 
 La función `agg()` es útil cuando se desea aplicar varias funciones a un df. Sus parámetros más importantes son:
 - `func`: La función a aplicar.
@@ -261,7 +252,42 @@ En el siguiente ejemplo se aplica la función `mean()` y `median()` a los valore
 planetas.groupby(['Tipo'])[planetas.select_dtypes(include=['number']).columns].agg(['mean', 'median'])
 ```
 
-## Merge()
+Puedes encontrar ejemplos en el siguiente notebook:
+[04_groupby_sorting.ipynb](notebooks/04_groupby_sorting.ipynb)
+
+## Documentación adicional
+
+Estos son solo alguno de los atributos y metodos más utilizados. Para una lista más detallada, consulte la [documentación de DataFrame en Pandas](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html), que incluye ejemplos útiles de cómo utilizar cada herramienta. 
+
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+
+
+## Atributos comunes de un DataFrame
+
+
+
+
+## Métodos comunes de un DataFrame
+
+| Métodos           | Descripción                                                              |
+| ----------------- | ------------------------------------------------------------------------ |
+
+| `.copy()`         | Hace una copia de los índices y datos del df                             |
+
+| `.drop()`         | Elimina las etiquetas especificadas de filas y columnas de un df         |
+
+| `.merge()`        | Combina dos DataFrames según columnas o índices comunes (tipo SQL JOIN)  |
+| `.concat()`       | Combina DataFrames por filas o columnas (apila uno sobre otro)           |
+
+
+
+### Merge()
 
 `merge()` permite combinar dos DataFrames basándose en columnas o índices, similar a las uniones de SQL.
 
@@ -285,7 +311,7 @@ planetas.groupby(['Tipo'])[planetas.select_dtypes(include=['number']).columns].a
 df_merged = pd.merge(df1, df2, on="id", how="inner")
 ```
 
-## Concat()
+### Concat()
 
 `concat()` sirve para apilar DataFrames uno encima del otro o uno al lado del otro.
 
