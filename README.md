@@ -21,7 +21,7 @@ data/
 | 03       | Funciones estadísticas y maps    | `03_std_map.ipynb`             |
 | 04       | Agrupación y clasificación       | `04_groupby_sorting.ipynb`     |
 | 05       | Tipos de datos y valores nulos   | `05_tipo_de_datos.ipynb`       |
-| 06       | Renombrar y combinar             | 
+| 06       | Renombrar y combinar             | `06_renombrar_combinar.ipynb`  |
 
 Cada notebook corresponde a un bloque conceptual del ecosistema Pandas, e integra los métodos y conceptos más usados en el análisis de datos.
 
@@ -280,41 +280,67 @@ Métodos para trabajar con tipos de datos, convertir columnas, manejar valores f
 | `df['col'].replace('actual','nuevo')`| Reeplaza un valor                                 |
 
 Puedes encontrar ejemplos en el siguiente notebook:
-[05_tipo_de_datos.ipynb)](notebooks/05_tipo_de_datos.ipynb)
+[05_tipo_de_datos.ipynb](notebooks/05_tipo_de_datos.ipynb)
 
-## Documentación adicional
+## 06 - Renombrar y combinar
 
-Estos son solo alguno de los atributos y metodos más utilizados. Para una lista más detallada, consulte la [documentación de DataFrame en Pandas](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html), que incluye ejemplos útiles de cómo utilizar cada herramienta. 
+Métodos para renombrar columnas, eliminar filas/columnas y combinar DataFrames usando concat y join.
 
-----------------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------------
+### Renombrar
 
+| Comando                              | Descripción                                |
+| ------------------------------------ | ------------------------------------------ |
+| `df.rename(columns={'old': 'new'})`  | Renombra columnas específicas              |
+| `df.rename(index={0: 'primero'})`    | Renombra etiquetas del índice              |
+| `df.rename_axis("", axis = 0)`       | Renombra el nombre del eje de las filas    |
+| `df.rename_axis("", axis = 1)`       | Renombra el nombre del eje de las columnas |
+| `df.set_axis([...], axis=1)`         | Asigna nuevos nombres a todas las columnas |
+| `df.set_axis([...], axis=0)`         | Renombra todas las filas (índice)          |
+| `df.columns = ['a','b','c']`         | Cambio directo de nombre de columnas       |
+| `df = df.add_prefix('col_')`         | Agrega prefijo a todas las columnas        |
+| `df = df.add_suffix('_2025')`        | Agrega sufijo a todas las columnas         |
 
-## Atributos comunes de un DataFrame
+### Unir dataframes - concat
 
+| Comando                             | Descripción                                           |
+| ----------------------------------- | ----------------------------------------------------- |
+| `pd.concat([df1, df2])`             | Une dataframes verticalmente (uno bajo otro)          |
+| `pd.concat([df1, df2], axis=1)`     | Une dataframes horizontalmente (uno al lado del otro) |
 
+> [IMPORTANT!]
+> Deben tener las mismas columnas para realizar una concatenación de dataframes
 
+`concat()` sirve para apilar DataFrames uno encima del otro o uno al lado del otro.
 
-## Métodos comunes de un DataFrame
+##### Parámetros clave
 
-| Métodos           | Descripción                                                              |
-| ----------------- | ------------------------------------------------------------------------ |
+- `axis=0`: concatena por filas (uno debajo de otro).
+- `axis=1`: concatena por columnas (uno al lado del otro).
+- `ignore_index=True`: reinicia el índice.
+- `join`: `"outer"` mantiene todas las columnas, `"inner"` solo las que coinciden.
 
-| `.copy()`         | Hace una copia de los índices y datos del df                             |
+Apilar columnas
+```
+df_concat = pd.concat([df1, df2], axis=0, ignore_index=True)
+```
 
-| `.drop()`         | Elimina las etiquetas especificadas de filas y columnas de un df         |
+Unir columnas
+```
+df_concat = pd.concat([df1, df2], axis=1)
+```
 
-| `.merge()`        | Combina dos DataFrames según columnas o índices comunes (tipo SQL JOIN)  |
-| `.concat()`       | Combina DataFrames por filas o columnas (apila uno sobre otro)           |
+### Unir dataframes - merge
 
-
-
-### Merge()
+| Comando                                                 | Descripción                              |
+| ------------------------------------------------------- | ---------------------------------------- |
+| `pd.merge(df1, df2, on='col')`                          | Unión simple por columna                 |
+| `pd.merge(df1, df2, left_on='a', right_on='b')`         | Unión por columnas con nombres distintos |
+| `pd.merge(df1, df2, on='col', how='left')`              | LEFT JOIN                                |
+| `pd.merge(df1, df2, on='col', how='right')`             | RIGHT JOIN                               |
+| `pd.merge(df1, df2, on='col', how='outer')`             | FULL OUTER JOIN                          |
+| `pd.merge(df1, df2, on='col', how='inner')`             | INNER JOIN (por defecto)                 |
+| `pd.merge(df1, df2, left_index=True, right_index=True)` | Unión por índice                         |
+| `df1.join(df2, how='left')`                             | Atajo para unir DataFrames por índice    |
 
 `merge()` permite combinar dos DataFrames basándose en columnas o índices, similar a las uniones de SQL.
 
@@ -338,24 +364,13 @@ Estos son solo alguno de los atributos y metodos más utilizados. Para una lista
 df_merged = pd.merge(df1, df2, on="id", how="inner")
 ```
 
-### Concat()
+Es mejor usar **concat** cuando los DataFrames tienen las mismas columnas y quieres apilarlos. **merge** cuando los DataFrames tienen columnas en común y quieres unirlos como en SQL.
 
-`concat()` sirve para apilar DataFrames uno encima del otro o uno al lado del otro.
+Puedes encontrar ejemplos en el siguiente notebook:
+[06_renombrar_combinar.ipynb](notebooks/06_renombrar_combinar.ipynb)
 
-##### Parámetros clave
+## Documentación adicional
 
-- `axis=0`: concatena por filas (uno debajo de otro).
-- `axis=1`: concatena por columnas (uno al lado del otro).
-- `ignore_index=True`: reinicia el índice.
-- `join`: `"outer"` mantiene todas las columnas, `"inner"` solo las que coinciden.
+Estos son solo alguno de los atributos y metodos más utilizados. Para una lista más detallada, consulte la [documentación de DataFrame en Pandas](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html), que incluye ejemplos útiles de cómo utilizar cada herramienta. 
 
-Apilar columnas
-```
-df_concat = pd.concat([df1, df2], axis=0, ignore_index=True)
-```
-
-Unir columnas
-```
-df_concat = pd.concat([df1, df2], axis=1)
-```
 
