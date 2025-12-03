@@ -14,14 +14,14 @@ data/
 
 ## Secciones 
 
-| Sección  | Tema                               | Archivo asociado             |
-| -------- | -------------------------------- | ------------------------------ |
-| 01       | Crear, leer y guardar archivos   | `01_crear_leer_guardar.ipynb`  |
-| 02       | Información, filtros y selección | `02_informacion_filtrar.ipynb` |
-| 03       | Funciones estadísticas y maps    | `03_std_map.ipynb`             |
-| 04       | Agrupación y clasificación       | `04_groupby_sorting.ipynb`     |
-| 05       | Tipos de datos y valores nulos   | [05_tipo_de_datos.ipynb](notebooks/05_tipo_de_datos.ipynb) |
-| 06       | Renombrar y combinar             | `06_renombrar_combinar.ipynb`  |
+| Sección  | Tema                               | Archivo asociado                                                     |
+| -------- | -------------------------------- | ---------------------------------------------------------------------- |
+| 01       | Crear, leer y guardar archivos   | [01_crear_leer_guardar.ipynb](notebooks/01_crear_leer_guardar.ipynb)   |
+| 02       | Información, filtros y selección | [02_informacion_filtrar.ipynb](notebooks/02_informacion_filtrar.ipynb) |
+| 03       | Funciones estadísticas y maps    | [03_std_map.ipynb](notebooks/03_std_map.ipynb)                         |
+| 04       | Agrupación y clasificación       | [04_groupby_sorting.ipynb](notebooks/04_groupby_sorting.ipynb)         |
+| 05       | Tipos de datos y valores nulos   | [05_tipo_de_datos.ipynb](notebooks/05_tipo_de_datos.ipynb)             |
+| 06       | Renombrar y combinar             | [06_renombrar_combinar.ipynb](notebooks/06_renombrar_combinar.ipynb)   |
 
 Cada notebook corresponde a un bloque conceptual del ecosistema Pandas, e integra los métodos y conceptos más usados en el análisis de datos.
 
