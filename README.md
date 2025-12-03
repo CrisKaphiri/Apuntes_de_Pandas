@@ -19,8 +19,8 @@ data/
 | 01       | Crear, leer y guardar archivos   | `01_crear_leer_guardar.ipynb`  |
 | 02       | Información, filtros y selección | `02_informacion_filtrar.ipynb` |
 | 03       | Funciones estadísticas y maps    | `03_std_map.ipynb`             |
-| 04       | Agrupación y clasificación       |
-| 05       | Tipos de datos y valores nulos   |
+| 04       | Agrupación y clasificación       | `04_groupby_sorting.ipynb`     |
+| 05       | Tipos de datos y valores nulos   | `05_tipo_de_datos.ipynb`       |
 | 06       | Renombrar y combinar             | 
 
 Cada notebook corresponde a un bloque conceptual del ecosistema Pandas, e integra los métodos y conceptos más usados en el análisis de datos.
@@ -50,10 +50,6 @@ Puedes encontrar ejemplos en el siguiente notebook:
 ## 02 - Información, filtros y selección
 
 Resumen para acceder a información de dataframes, indexar, seleccionar y asignar datos en Pandas.
-
-
-
-
 
 ### Información general sobre el Dataframe
 
@@ -254,6 +250,37 @@ planetas.groupby(['Tipo'])[planetas.select_dtypes(include=['number']).columns].a
 
 Puedes encontrar ejemplos en el siguiente notebook:
 [04_groupby_sorting.ipynb](notebooks/04_groupby_sorting.ipynb)
+
+## 05 - Tipos de datos y valores núlos
+
+Métodos para trabajar con tipos de datos, convertir columnas, manejar valores faltantes y limpiar estructuras.
+
+### Tipos de datos y conversiones
+
+| Comando                                     | Descripción                                 |
+| ------------------------------------------- | ------------------------------------------- |
+| `df.dtypes`                                 | Muestra el tipo de dato de cada columna     |
+| `df['col'] = df['col'].astype(int)`         | Conversión directa                          |
+| `pd.to_numeric(df['col'], errors='coerce')` | Convierte a número (forzando errores a NaN) |
+
+### Datos faltantes
+
+| Comando                              | Descripción                                       |
+| ------------------------------------ | ------------------------------------------------- |
+| `df.isnull()`                        | Indica valores faltantes                          |
+| `df.notnull()`                       | Indica valores NO faltantes                       |
+| `df.dropna()`                        | Elimina filas con valores nulos                   |
+| `df.dropna(subset=['col'])`          | Elimina filas solo si ciertas columnas tienen NaN |
+| `df.dropna(how='all')`               | Elimina filas si todas las columnas tienen nulos  |
+| `df.fillna(0)`                       | Rellena nulos con un valor                        |
+| `df.fillna({'col': 0})`              | Rellena nulos por columna                         |
+| `df['col'].fillna(df['col'].mean())` | Rellena con promedio u otra estadística           |
+| `df['col'].bfill()`                  | Rellena valores NaN con el valor siguiente        |
+| `df['col'].ffill()`                  | Rellena valores NaN con el valor anterior         |
+| `df['col'].replace('actual','nuevo')`| Reeplaza un valor                                 |
+
+Puedes encontrar ejemplos en el siguiente notebook:
+[05_tipo_de_datos.ipynb)](notebooks/05_tipo_de_datos.ipynb)
 
 ## Documentación adicional
 
