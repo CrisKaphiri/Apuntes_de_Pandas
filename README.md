@@ -20,7 +20,7 @@ data/
 | 02       | Información, filtros y selección | `02_informacion_filtrar.ipynb` |
 | 03       | Funciones estadísticas y maps    | `03_std_map.ipynb`             |
 | 04       | Agrupación y clasificación       | `04_groupby_sorting.ipynb`     |
-| 05       | Tipos de datos y valores nulos   | `05_tipo_de_datos.ipynb`       |
+| 05       | Tipos de datos y valores nulos   | [05_tipo_de_datos.ipynb](notebooks/05_tipo_de_datos.ipynb) |
 | 06       | Renombrar y combinar             | `06_renombrar_combinar.ipynb`  |
 
 Cada notebook corresponde a un bloque conceptual del ecosistema Pandas, e integra los métodos y conceptos más usados en el análisis de datos.
