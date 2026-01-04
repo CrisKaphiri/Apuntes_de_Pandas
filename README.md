@@ -369,6 +369,13 @@ Es mejor usar **concat** cuando los DataFrames tienen las mismas columnas y quie
 Puedes encontrar ejemplos en el siguiente notebook:
 [06_renombrar_combinar.ipynb](notebooks/06_renombrar_combinar.ipynb)
 
+## 07 - Adicional
+
+| Comando                              | Descripción                                       |
+| ------------------------------------ | ------------------------------------------------- |
+| `.sample(n, replace, random_state)`  | Simula una muestra aleatoria                      |
+
+
 ## Documentación adicional
 
 Estos son solo alguno de los atributos y metodos más utilizados. Para una lista más detallada, consulte la [documentación de DataFrame en Pandas](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html), que incluye ejemplos útiles de cómo utilizar cada herramienta. 
