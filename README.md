@@ -369,11 +369,17 @@ Es mejor usar **concat** cuando los DataFrames tienen las mismas columnas y quie
 Puedes encontrar ejemplos en el siguiente notebook:
 [06_renombrar_combinar.ipynb](notebooks/06_renombrar_combinar.ipynb)
 
-## 07 - Adicional
+## 07 - Estadística
 
-| Comando                              | Descripción                                       |
-| ------------------------------------ | ------------------------------------------------- |
-| `.sample(n, replace, random_state)`  | Simula una muestra aleatoria                      |
+| Número | Comando                                      | Descripción                                       |
+| ------ | -------------------------------------------- | ------------------------------------------------- |
+| 1      | `.sample(n, replace, random_state)`          | Simula una muestra aleatoria                      |
+| 2      | `stats.norm.interval(alpha, loc, scale)`     | Construye un intervalo de confianza               |
+| 3      | `df['columna'].std() / np.sqrt(df.shape[0])` | Calcular el error estándar de la muestra          |
+
+1. n = tamaño de muestra (sobre 30 ideal), replace = si es con reemplazo, random_state = número de semilla para guardar la muestra aleatoria.
+2. alpha = nivel de confianza, loc = media de la muestra, scale = error estándar de la muestra.
+3. df['columna'] debe contener la variable cuantitativa que se desea analizar.
 
 
 ## Documentación adicional
