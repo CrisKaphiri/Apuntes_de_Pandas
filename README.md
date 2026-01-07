@@ -376,11 +376,13 @@ Puedes encontrar ejemplos en el siguiente notebook:
 | 1      | `.sample(n, replace, random_state)`          | Simula una muestra aleatoria                      |
 | 2      | `df['columna'].std() / np.sqrt(df.shape[0])` | Calcular el error estándar de la muestra          |
 | 3      | `stats.norm.interval(alpha, loc, scale)`     | Construye un intervalo de confianza               |
+| 4      | `stats.ttest_ind(a, b, equal_var)`           | Obtiene el p-valor de dos muestras                |
 
 
 1. `n` tamaño de muestra (sobre 30 ideal), `replace` si es con reemplazo, `random_state` número de semilla para guardar la muestra aleatoria.
 2. `df['columna']` debe contener la variable cuantitativa que se desea analizar.
 3. `alpha` nivel de confianza, `loc` media de la muestra, `scale` error estándar de la muestra.
+4. `a` datos de la primera muestra, `b` datos de la segunda muestra, `equal_var` booleano para indicar si asume que varianza poblacional es igual.
 
 
 ## Documentación adicional
