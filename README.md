@@ -386,6 +386,38 @@ Puedes encontrar ejemplos en el siguiente notebook:
 4. `a` datos de la primera muestra, `b` datos de la segunda muestra, `equal_var` booleano para indicar si asume que varianza poblacional es igual.
 5. `a` datos de la muestra, `mu` media poblacional hipotética, `alternative` less, greater o two-sided.
 
+## 08 - Regresión lineal
+
+| Número | Comando                                             | Descripción                                       |
+| ------ | --------------------------------------------------- | ------------------------------------------------- |
+| 1      | `sns.pairplot(data)`                                | Crea un gráfico de dispersión por pares           |
+| 2      | `ols_data = data[["col_1", "col_2"]]`               | Guardo en ols_data las variables y, x             |
+| 3      | `ols_formula = "col_1 ~ col_2"`                     | Guardo la ols formula en orden Y, X               |
+| 4      | `OLS = ols(formula = ols_formula, data = ols_data)` | Implementa un OLS                                 |
+| 5      | `model = OLS.fit()`                                 | Crea un modelo de regresión lineal                | 
+| 6      | `model.summary()`                                   | Obtiene un resumen del modelo                     |
+| 7      | `sns.regplot(x = "col_1", y = "col_2", data = ols_data)` | Grafica un OLS con la línea de mejor ajuste  |
+| 8      | `residuals = model.resid`                                | Guarda el residuo del modelo                 |
+| 9      | `fig = sns.histplot(residuals)`                          | Grafica la distribución de los residuos      |
+| 10     | `sm.qqplot(residuals, line='s')`                         | Grafica un QQ plot                           |
+| 11     | `fitted_values = model.predict(ols_data["col_1"])`       | Guarda los valores ajustados del modelo      |
+| 12     | `fig = sns.scatterplot(x=fitted_values, y=residuals)`    | Grafica residuos frente a valores ajustados  |
+
+
+
+1. Trabajar con aquellos que tengan una correlación lineal.
+2. Guarda los datos para crear un OLS
+3. Guarda la formula para crear un OLS
+4. Crea un OLS
+5. Crea un modelo
+6. Resume el modelo, obtieniendo información como la intercepción y la pendiente
+7. Grafica la linea de mejor ajuste para comprobar el supuesto de linealidad
+8. Guarda el residuo
+9. Grafica la distribución de los residuos para comprobar el supuesto de normalidad
+10. Grafica un QQ Plot para verificar el supuesto de normalidad
+11. Guarda valores ajustados
+12. Grafica un diagrama de dispersión para verificar el supuesto de homocedasticidad (datos dispersos como una nube)
+
 ## Documentación adicional
 
 Estos son solo alguno de los atributos y metodos más utilizados. Para una lista más detallada, consulte la [documentación de DataFrame en Pandas](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html), que incluye ejemplos útiles de cómo utilizar cada herramienta. 
