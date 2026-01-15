@@ -400,8 +400,7 @@ Puedes encontrar ejemplos en el siguiente notebook:
 | 8      | `residuals = model.resid`                                | Guarda el residuo del modelo                 |
 | 9      | `fig = sns.histplot(residuals)`                          | Grafica la distribución de los residuos      |
 | 10     | `sm.qqplot(residuals, line='s')`                         | Grafica un QQ plot                           |
-| 11     | `fitted_values = model.predict(ols_data["col_1"])`       | Guarda los valores ajustados del modelo      |
-| 12     | `fig = sns.scatterplot(x=fitted_values, y=residuals)`    | Grafica residuos frente a valores ajustados  |
+| 11     | `fig = sns.scatterplot(x=model.fittedvalues, y=model.resid)` | Grafica residuos frente a valores ajustados |
 
 
 
@@ -415,8 +414,7 @@ Puedes encontrar ejemplos en el siguiente notebook:
 8. Guarda el residuo
 9. Grafica la distribución de los residuos para comprobar el supuesto de normalidad
 10. Grafica un QQ Plot para verificar el supuesto de normalidad
-11. Guarda valores ajustados
-12. Grafica un diagrama de dispersión para verificar el supuesto de homocedasticidad (datos dispersos como una nube)
+11. Grafica un diagrama de dispersión para verificar el supuesto de homocedasticidad (datos dispersos como una nube)
 
 ## Documentación adicional
 
